@@ -2,40 +2,48 @@ import java.math.BigDecimal;
 
 public class Calculator {
 
-    private static void printResultToConsole(long result, String operation) {
+
+    private static void printResultToConsole(BigDecimal result, String operation) {
         switch (operation) {
             case "add":
-                System.out.println("Sum is " + result);
+                System.out.println("Sum is " + result.toString());
                 break;
-            case "substract":
-                System.out.println("Difference is " + result);
+            case "subtract":
+                System.out.println("Difference is " + result.toString());
                 break;
             case "multiply":
-                System.out.println("Product is " + result);
+                System.out.println("Product is " + result.toString());
+                break;
+            case "divide":
+                System.out.println("Quotient is " + result.toString());
+                break;
+            default:
+                System.out.println("Result is " + result.toString());
                 break;
         }
     }
-    private static void printResultToConsole(BigDecimal result) {
-        System.out.println("Quotient is " + result.toString());
-    }
 
-    public static void add(int operand1, int operand2) {
-        long sum = (long)operand1 + operand2;
+    public static BigDecimal add(int operand1, int operand2) {
+        BigDecimal sum = new BigDecimal(operand1).add(new BigDecimal(operand2));
         printResultToConsole(sum, "add");
+        return sum;
     }
 
-    public static void substract(int operand1, int operand2) {
-        long difference = (long)operand1 - operand2;
-        printResultToConsole(difference, "substract");
+    public static BigDecimal subtract(int operand1, int operand2) {
+        BigDecimal difference = new BigDecimal(operand1).subtract(new BigDecimal(operand2));
+        printResultToConsole(difference, "subtract");
+        return difference;
     }
 
-    public static void multiply(int operand1, int operand2) {
-        long product = (long)operand1 * operand2;
+    public static BigDecimal multiply(int operand1, int operand2) {
+        BigDecimal product = new BigDecimal(operand1).multiply(new BigDecimal(operand2));
         printResultToConsole(product, "multiply");
+        return product;
     }
 
-    public static void divide(int operand1, int operand2) {
+    public static BigDecimal divide(int operand1, int operand2) {
         BigDecimal quotient = new BigDecimal(operand1).divide(new BigDecimal(operand2), 10, BigDecimal.ROUND_HALF_UP);
-        printResultToConsole(quotient);
+        printResultToConsole(quotient, "divide");
+        return quotient;
     }
 }
